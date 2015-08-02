@@ -16,21 +16,21 @@ db = SQLAlchemy()
 
 class Model(db.Model):
 
-    __tablename__ = "models"
+    __tablename__ = "Models"
 
-    model_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     year = db.Column(db.Integer, nullable=False)
-    brand_name = db.Column(db.String(50), db.ForeignKey('brands.name'), nullable=True)
+    brand_name = db.Column(db.String(50), db.ForeignKey('Brands.name'), nullable=True)
     name = db.Column(db.String(50), nullable=False)
 
     model_brand = db.relationship('Brand', 
-                                    backref=db.backref('models'))
+                                    backref=db.backref('Models'))
 
 class Brand(db.Model):
 
-    __tablename__ = "brands"
+    __tablename__ = "Brands"
     
-    brand_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     founded = db.Column(db.Integer, nullable=True)
     headquarters = db.Column(db.String(50), nullable=True)
