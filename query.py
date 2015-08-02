@@ -30,42 +30,42 @@ session = Session()
 
 # Part 2: Write queries
 
-# # Get the brand with the **id** of 8.
-# q1 = session.query(Brand).get(8)
+# Get the brand with the **id** of 8.
+q1 = session.query(Brand).get(8)
 
-# # # Get all models with the **name** Corvette and the **brand_name** Chevrolet.
-# q2 = session.query(Model).filter_by(name = 'Corvette', brand_name = 'Chevrolet')
+# # Get all models with the **name** Corvette and the **brand_name** Chevrolet.
+q2 = session.query(Model).filter_by(name = 'Corvette', brand_name = 'Chevrolet')
 
-# # # Get all models that are older than 1960.
-# q3 = session.query(Model).filter(Model.year < 1960).all()
+# # Get all models that are older than 1960.
+q3 = session.query(Model).filter(Model.year < 1960).all()
 
-# # # Get all brands that were founded after 1920.
-# q4 = session.query(Brand).filter(Brand.founded > 1920).all()
+# # Get all brands that were founded after 1920.
+q4 = session.query(Brand).filter(Brand.founded > 1920).all()
 
-# # # Get all models with names that begin with "Cor".
-# q5 = session.query(Model).filter(Model.name.like('Cor%')).all()
+# # Get all models with names that begin with "Cor".
+q5 = session.query(Model).filter(Model.name.like('Cor%')).all()
 
-# # # Get all brands with that were founded in 1903 and that are not yet discontinued.
-# q6 = session.query(Brand).filter(and_(Brand.discontinued.is_(None), Brand.founded == '1903')).all()
+# # Get all brands with that were founded in 1903 and that are not yet discontinued.
+q6 = session.query(Brand).filter(and_(Brand.discontinued.is_(None), Brand.founded == '1903')).all()
 
-# # # Get all brands with that are either discontinued or founded before 1950.
-# q7 = session.query(Brand).filter(or_(Brand.discontinued != None, Brand.founded < 1950)).all()
+# # Get all brands with that are either discontinued or founded before 1950.
+q7 = session.query(Brand).filter(or_(Brand.discontinued != None, Brand.founded < 1950)).all()
 
-# # # Get any model whose brand_name is not Chevrolet.
-# q8 = session.query(Model).filter(Model.brand_name != 'Chevrolet').all()
+# # Get any model whose brand_name is not Chevrolet.
+q8 = session.query(Model).filter(Model.brand_name != 'Chevrolet').all()
 
-# # Fill in the following functions. (See directions for more info.)
+# Fill in the following functions. (See directions for more info.)
 
-# def get_model_info(year):
-#     '''Takes in a year, and prints out each model, brand_name, and brand
-#     headquarters for that year using only ONE database query.'''
+def get_model_info(year):
+    '''Takes in a year, and prints out each model, brand_name, and brand
+    headquarters for that year using only ONE database query.'''
 
-#     joined_model_brand = session.query(Model, Brand).join(Brand).filter(Model.year == year).all()
+    joined_model_brand = session.query(Model, Brand).join(Brand).filter(Model.year == year).all()
 
-#     for car_model, car_brand in joined_model_brand:
-#     	print car_model.name + " " + car_model.brand_name + " " + car_brand.headquarters
+    for car_model, car_brand in joined_model_brand:
+    	print car_model.name + " " + car_model.brand_name + " " + car_brand.headquarters
     	
-# get_model_info(1960)
+get_model_info(1960)
 
 def get_brands_summary():
     '''Prints out each brand name, and each model name for that brand
